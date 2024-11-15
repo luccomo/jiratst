@@ -63,3 +63,7 @@
 .inventory-panel tr:hover {
     background-color: #F4F5F7;
 }
+
+body, #root {
+  height: 1080px;
+}
