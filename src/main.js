@@ -1,6 +1,7 @@
 import { renderInventoryTable } from './components/InventoryTable.js';
 import { inventoryData } from './data/inventory.js';
 import './styles/inventory-panel.css';
+import './styles/global.css'
 
 function initializeApp() {
     document.getElementById('app').innerHTML = `
