@@ -1,0 +1,27 @@
+.inventory-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.inventory-panel th, 
+.inventory-panel td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.inventory-panel th {
+    background-color: #f4f5f7;
+}
+
+.inventory-panel select {
+    width: 100%;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.inventory-panel tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
