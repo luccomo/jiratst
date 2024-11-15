@@ -21,46 +21,57 @@ const inventoryItems = [
     { description: 'Dell OptiPlex Desktop', quantity: 35, location: 'Storage B3', status: 'warehouse' }
 ];
 
+function createStatusBadge(status) {
+    const statusOption = STATUS_OPTIONS.find(opt => opt.value === status)
+    const span = document.createElement('span')
+    span.className = `px-1.5 py-0.5 rounded-full text-xs font-medium ${statusOption.colors}`
+    span.textContent = statusOption.label
+    return span
+}
+
 function createStatusSelect(item) {
-    const select = document.createElement('select');
-    select.className = 'status-select';
-    select.setAttribute('data-item', item.description);
-    select.onchange = (e) => updateStatus(e.target.value, item.description);
+    const container = document.createElement('div')
+    container.className = 'flex items-center gap-1'
+    
+    const select = document.createElement('select')
+    select.className = 'status-select rounded border px-1.5 py-0.5 text-xs'
+    select.setAttribute('data-item', item.description)
+    select.onchange = (e) => updateStatus(e.target.value, item.description)
 
     STATUS_OPTIONS.forEach(option => {
-        const optionElement = document.createElement('option');
-        optionElement.value = option.value;
-        optionElement.textContent = option.label;
-        optionElement.selected = item.status === option.value;
-        select.appendChild(optionElement);
-    });
+        const optionElement = document.createElement('option')
+        optionElement.value = option.value
+        optionElement.textContent = option.label
+        optionElement.selected = item.status === option.value
+        select.appendChild(optionElement)
+    })
 
-    return select;
+    return select
 }
 
 function renderInventoryTable() {
-    const tbody = document.getElementById('inventory-tbody');
-    tbody.innerHTML = ''; // Clear existing content
+    const tbody = document.getElementById('inventory-tbody')
+    tbody.innerHTML = '' // Clear existing content
     
     inventoryItems.forEach(item => {
-        const row = document.createElement('tr');
+        const row = document.createElement('tr')
         
         row.innerHTML = `
             <td>${item.description}</td>
             <td>${item.quantity}</td>
             <td>${item.location}</td>
-        `;
+        `
         
-        const statusCell = document.createElement('td');
-        statusCell.appendChild(createStatusSelect(item));
-        row.appendChild(statusCell);
+        const statusCell = document.createElement('td')
+        statusCell.appendChild(createStatusSelect(item))
+        row.appendChild(statusCell)
         
-        tbody.appendChild(row);
-    });
+        tbody.appendChild(row)
+    })
 }
 
 function updateStatus(newStatus, itemDescription) {
-    console.log(`Updating status for ${itemDescription} to ${newStatus}`);
+    console.log(`Updating status for ${itemDescription} to ${newStatus}`)
     
     AP.request({
         url: `/rest/api/3/issue/${AP.context.getIssueKey()}`,
@@ -72,10 +83,10 @@ function updateStatus(newStatus, itemDescription) {
         }),
         contentType: 'application/json'
     }).then(() => {
-        console.log('Status updated successfully');
+        console.log('Status updated successfully')
     }).catch(error => {
-        console.error('Error updating status:', error);
-    });
+        console.error('Error updating status:', error)
+    })
 }
 
-document.addEventListener('DOMContentLoaded', renderInventoryTable);
+document.addEventListener('DOMContentLoaded', renderInventoryTable)
