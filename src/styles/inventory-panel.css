@@ -4,10 +4,26 @@
     background-color: #fff;
 }
 
-.inventory-panel h3 {
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #DFE1E6;
+}
+
+.logo {
+    width: 48px;
+    height: 48px;
+    margin-right: 16px;
+    border-radius: 4px;
+}
+
+.header h1 {
     color: #172B4D;
-    font-size: 20px;
-    margin-bottom: 16px;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
 }
 
 .inventory-panel table {

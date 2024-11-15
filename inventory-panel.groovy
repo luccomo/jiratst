@@ -5,10 +5,9 @@ import groovy.xml.MarkupBuilder
 
 @WithPlugin("com.onresolve.jira.groovy.groovyrunner")
 def getFragment() {
-    def baseUrl = "https://cdn.jsdelivr.net/gh/luccomo/jiratst"
-    def htmlUrl = "${baseUrl}/inventory-panel.html"
-    def cssUrl = "${baseUrl}/inventory-panel.css"
-    def jsUrl = "${baseUrl}/inventory-panel.js"
+    def htmlUrl = "https://your-cdn-or-server.com/inventory-panel.html"
+    def cssUrl = "https://your-cdn-or-server.com/inventory-panel.css"
+    def jsUrl = "https://your-cdn-or-server.com/inventory-panel.js"
     
     def writer = new StringWriter()
     def html = new MarkupBuilder(writer)

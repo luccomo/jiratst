@@ -7,11 +7,18 @@ const STATUS_OPTIONS = [
     { value: 'received', label: 'Received' }
 ];
 
-// Sample inventory data - Replace with actual data from Jira
+// IT Equipment inventory data
 const inventoryItems = [
-    { description: 'Laptop Dell XPS', quantity: 10, location: 'Warehouse A', status: 'warehouse' },
-    { description: 'Monitor 27"', quantity: 15, location: 'Warehouse B', status: 'ordered' },
-    { description: 'Wireless Mouse', quantity: 50, location: 'Store 1', status: 'received' }
+    { description: 'Dell XPS 15 Laptop', quantity: 25, location: 'Main Warehouse', status: 'warehouse' },
+    { description: 'HP 27" 4K Monitor', quantity: 40, location: 'Storage B2', status: 'ordered' },
+    { description: 'Logitech MX Master 3 Mouse', quantity: 100, location: 'Storage A1', status: 'received' },
+    { description: 'Apple MacBook Pro M1', quantity: 15, location: 'Secure Storage', status: 'transit' },
+    { description: 'Lenovo ThinkPad Dock', quantity: 30, location: 'Main Warehouse', status: 'received' },
+    { description: 'Microsoft Surface Pro 8', quantity: 20, location: 'Storage B1', status: 'ordered' },
+    { description: 'Keychron K2 Keyboard', quantity: 50, location: 'Storage A2', status: 'warehouse' },
+    { description: 'Cisco IP Phone 8841', quantity: 75, location: 'Storage C1', status: 'shipped' },
+    { description: 'APC UPS 1500VA', quantity: 25, location: 'Main Warehouse', status: 'received' },
+    { description: 'Dell OptiPlex Desktop', quantity: 35, location: 'Storage B3', status: 'warehouse' }
 ];
 
 function createStatusSelect(item) {
@@ -33,6 +40,7 @@ function createStatusSelect(item) {
 
 function renderInventoryTable() {
     const tbody = document.getElementById('inventory-tbody');
+    tbody.innerHTML = ''; // Clear existing content
     
     inventoryItems.forEach(item => {
         const row = document.createElement('tr');
@@ -54,25 +62,20 @@ function renderInventoryTable() {
 function updateStatus(newStatus, itemDescription) {
     console.log(`Updating status for ${itemDescription} to ${newStatus}`);
     
-    // Example AJAX call to update status in Jira
     AP.request({
         url: `/rest/api/3/issue/${AP.context.getIssueKey()}`,
         type: 'PUT',
         data: JSON.stringify({
             fields: {
-                // Replace 'customfield_xxxxx' with your actual custom field ID
                 customfield_xxxxx: newStatus
             }
         }),
         contentType: 'application/json'
     }).then(() => {
-        // Handle success
         console.log('Status updated successfully');
     }).catch(error => {
-        // Handle error
         console.error('Error updating status:', error);
     });
 }
 
-// Initialize the table when the script loads
 document.addEventListener('DOMContentLoaded', renderInventoryTable);
