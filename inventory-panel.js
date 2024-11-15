@@ -1,10 +1,10 @@
 // Define status options
 const STATUS_OPTIONS = [
-    { value: 'ordered', label: 'Ordered' },
-    { value: 'shipped', label: 'Shipped' },
-    { value: 'warehouse', label: 'Warehouse' },
-    { value: 'transit', label: 'In Transit' },
-    { value: 'received', label: 'Received' }
+    { value: 'ordered', label: 'Ordered', colors: 'status-badge status-ordered' },
+    { value: 'shipped', label: 'Shipped', colors: 'status-badge status-shipped' },
+    { value: 'warehouse', label: 'Warehouse', colors: 'status-badge status-warehouse' },
+    { value: 'transit', label: 'In Transit', colors: 'status-badge status-transit' },
+    { value: 'received', label: 'Received', colors: 'status-badge status-received' }
 ];
 
 // IT Equipment inventory data
